@@ -25,6 +25,7 @@ spec:
       steps {
         container('testbox') {
           sh """
+            mix local.hex --force
             mix deps.get
             mix dialyzer
             mix test --cover
@@ -38,5 +39,10 @@ spec:
         }
       }
     }
+    /*
+    run docs task, fail if the docs have changed
+    if building tag:
+    publish to hex
+    */
   }
 }
