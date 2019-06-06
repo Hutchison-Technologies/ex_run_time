@@ -1,6 +1,6 @@
 # ExRunTime
 
-**TODO: Add description**
+Tiny elixir library useful for examining the runtime environment.
 
 ## Installation
 
@@ -18,4 +18,3 @@ end
 Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
 and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
 be found at [https://hexdocs.pm/ex_run_time](https://hexdocs.pm/ex_run_time).
-
