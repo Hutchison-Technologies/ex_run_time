@@ -1,0 +1,1 @@
+searchNodes=[{"ref":"ExRunTime.html","title":"ExRunTime","type":"module","doc":"Documentation for ExRunTime."},{"ref":"ExRunTime.html#hello/0","title":"ExRunTime.hello/0","type":"function","doc":"Hello world. Examples iex&gt; ExRunTime.hello() :world"}]
