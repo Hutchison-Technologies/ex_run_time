@@ -8,7 +8,7 @@
     <meta name="project" content="ExRunTime v0.1.0">
     <title>ExRunTime — ExRunTime v0.1.0</title>
     <link rel="stylesheet" href="dist/html-d9f58a6320b5bfa6dd77.css" />
-    <script src="dist/sidebar_items-01ae343d13.js"></script>
+    <script src="dist/sidebar_items-9792531e57.js"></script>
       <script src="docs_config.js"></script>
     <script async src="dist/html-d9f58a6320b5bfa6dd77.js"></script>
     
@@ -76,7 +76,7 @@ ExRunTime
 
 
         <section id="moduledoc">
-<p>Documentation for ExRunTime.</p>
+<p>Tiny elixir library useful for examining the runtime environment.</p>
         </section>
 
         <section id="summary" class="details-list">
@@ -93,9 +93,24 @@ ExRunTime
     </h2>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="#hello/0">hello()</a>
+    <a href="#is_kubernetes?/1">is_kubernetes?(env \\ System.get_env())</a>
   </div>
-    <div class="summary-synopsis"><p>Hello world.</p></div>
+    <div class="summary-synopsis"><p>Examines the system environment variables to determine whether or not the
+application is running in Kubernetes.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#is_production_deploy?/1">is_production_deploy?(env \\ System.get_env())</a>
+  </div>
+    <div class="summary-synopsis"><p>Examines the system environment variables to determine whether or not the
+application is running in the production environment.</p></div>
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#is_test?/1">is_test?(env \\ System.get_env())</a>
+  </div>
+    <div class="summary-synopsis"><p>Examines the system environment variables to determine whether or not the
+application is running in test.</p></div>
 </div>
   </div>
         </section>
@@ -108,27 +123,116 @@ ExRunTime
             </a>
 Functions          </h1>
           <div class="functions-list">
-<section class="detail" id="hello/0">
-    <div class="detail-header">
-    <a href="#hello/0" class="detail-link" title="Link to this function">
+<section class="detail" id="is_kubernetes?/1">
+  
+    <span id="is_kubernetes?/0"></span>
+  <div class="detail-header">
+    <a href="#is_kubernetes?/1" class="detail-link" title="Link to this function">
       <span class="icon-link" aria-hidden="true"></span>
       <span class="sr-only">Link to this function</span>
     </a>
-    <h1 class="signature">hello()</span>
-      <a href="https://github.com/Hutchison-Technologies/ex_run_time/blob/master/lib/ex_run_time.ex#L15" class="view-source" rel="help" title="View Source">
+    <h1 class="signature">is_kubernetes?(env \\ System.get_env())</span>
+      <a href="https://github.com/Hutchison-Technologies/ex_run_time/blob/master/lib/ex_run_time.ex#L28" class="view-source" rel="help" title="View Source">
        <span class="icon-code" aria-hidden="true"></span>
        <span class="sr-only">View Source</span>
      </a>
-          </div>
+        
+      <div class="specs">
+          <pre>is_kubernetes?(%{optional(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) => <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()}) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+      </div>
+  </div>
   <section class="docstring">
-<p>Hello world.</p>
-<h2 id="hello/0-examples" class="section-heading">
-  <a href="#hello/0-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+<p>Examines the system environment variables to determine whether or not the
+application is running in Kubernetes.</p>
+<p>Returns true or false.</p>
+<p>Uses <code class="inline">System.get_env()</code> by default but you can pass in your own map.</p>
+<h2 id="is_kubernetes?/1-examples" class="section-heading">
+  <a href="#is_kubernetes?/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Examples
 </h2>
 
-<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">ExRunTime</span><span class="o">.</span><span class="n">hello</span><span class="p" data-group-id="8439719442-1">(</span><span class="p" data-group-id="8439719442-1">)</span><span class="w">
-</span><span class="ss">:world</span></code></pre>
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">ExRunTime</span><span class="o">.</span><span class="n">is_kubernetes?</span><span class="p" data-group-id="8866177710-1">(</span><span class="p" data-group-id="8866177710-2">%{</span><span class="s">&quot;KUBERNETES_POD&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;some-pod&quot;</span><span class="p" data-group-id="8866177710-2">}</span><span class="p" data-group-id="8866177710-1">)</span><span class="w">
+</span><span class="no">true</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">ExRunTime</span><span class="o">.</span><span class="n">is_kubernetes?</span><span class="p" data-group-id="8866177710-3">(</span><span class="p" data-group-id="8866177710-4">%{</span><span class="p" data-group-id="8866177710-4">}</span><span class="p" data-group-id="8866177710-3">)</span><span class="w">
+</span><span class="no">false</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">ExRunTime</span><span class="o">.</span><span class="n">is_kubernetes?</span><span class="p" data-group-id="8866177710-5">(</span><span class="p" data-group-id="8866177710-5">)</span><span class="w">
+</span><span class="no">false</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="is_production_deploy?/1">
+  
+    <span id="is_production_deploy?/0"></span>
+  <div class="detail-header">
+    <a href="#is_production_deploy?/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">is_production_deploy?(env \\ System.get_env())</span>
+      <a href="https://github.com/Hutchison-Technologies/ex_run_time/blob/master/lib/ex_run_time.ex#L74" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>is_production_deploy?(%{optional(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) => <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()}) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Examines the system environment variables to determine whether or not the
+application is running in the production environment.</p>
+<p>Returns true or false.</p>
+<p>Uses <code class="inline">System.get_env()</code> by default but you can pass in your own map.</p>
+<h2 id="is_production_deploy?/1-examples" class="section-heading">
+  <a href="#is_production_deploy?/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">ExRunTime</span><span class="o">.</span><span class="n">is_production_deploy?</span><span class="p" data-group-id="7738158370-1">(</span><span class="p" data-group-id="7738158370-1">)</span><span class="w">
+</span><span class="no">false</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">ExRunTime</span><span class="o">.</span><span class="n">is_production_deploy?</span><span class="p" data-group-id="7738158370-2">(</span><span class="p" data-group-id="7738158370-3">%{</span><span class="p" data-group-id="7738158370-3">}</span><span class="p" data-group-id="7738158370-2">)</span><span class="w">
+</span><span class="no">false</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">ExRunTime</span><span class="o">.</span><span class="n">is_production_deploy?</span><span class="p" data-group-id="7738158370-4">(</span><span class="p" data-group-id="7738158370-5">%{</span><span class="s">&quot;DEPLOYED_ENV&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;test&quot;</span><span class="p" data-group-id="7738158370-5">}</span><span class="p" data-group-id="7738158370-4">)</span><span class="w">
+</span><span class="no">false</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">ExRunTime</span><span class="o">.</span><span class="n">is_production_deploy?</span><span class="p" data-group-id="7738158370-6">(</span><span class="p" data-group-id="7738158370-7">%{</span><span class="s">&quot;DEPLOYED_ENV&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;prod&quot;</span><span class="p" data-group-id="7738158370-7">}</span><span class="p" data-group-id="7738158370-6">)</span><span class="w">
+</span><span class="no">true</span></code></pre>
+  </section>
+</section>
+<section class="detail" id="is_test?/1">
+  
+    <span id="is_test?/0"></span>
+  <div class="detail-header">
+    <a href="#is_test?/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">is_test?(env \\ System.get_env())</span>
+      <a href="https://github.com/Hutchison-Technologies/ex_run_time/blob/master/lib/ex_run_time.ex#L51" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+        
+      <div class="specs">
+          <pre>is_test?(%{optional(<a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()) => <a href="https://hexdocs.pm/elixir/String.html#t:t/0">String.t</a>()}) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+      </div>
+  </div>
+  <section class="docstring">
+<p>Examines the system environment variables to determine whether or not the
+application is running in test.</p>
+<p>Returns true or false.</p>
+<p>Uses <code class="inline">System.get_env()</code> by default but you can pass in your own map.</p>
+<h2 id="is_test?/1-examples" class="section-heading">
+  <a href="#is_test?/1-examples" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Examples
+</h2>
+
+<pre><code class="nohighlight makeup elixir"><span class="gp unselectable">iex&gt; </span><span class="nc">ExRunTime</span><span class="o">.</span><span class="n">is_test?</span><span class="p" data-group-id="8230007952-1">(</span><span class="p" data-group-id="8230007952-1">)</span><span class="w">
+</span><span class="no">false</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">ExRunTime</span><span class="o">.</span><span class="n">is_test?</span><span class="p" data-group-id="8230007952-2">(</span><span class="p" data-group-id="8230007952-3">%{</span><span class="p" data-group-id="8230007952-3">}</span><span class="p" data-group-id="8230007952-2">)</span><span class="w">
+</span><span class="no">false</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">ExRunTime</span><span class="o">.</span><span class="n">is_test?</span><span class="p" data-group-id="8230007952-4">(</span><span class="p" data-group-id="8230007952-5">%{</span><span class="s">&quot;MIX_ENV&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;test&quot;</span><span class="p" data-group-id="8230007952-5">}</span><span class="p" data-group-id="8230007952-4">)</span><span class="w">
+</span><span class="no">true</span><span class="w">
+</span><span class="gp unselectable">iex&gt; </span><span class="nc">ExRunTime</span><span class="o">.</span><span class="n">is_test?</span><span class="p" data-group-id="8230007952-6">(</span><span class="p" data-group-id="8230007952-7">%{</span><span class="s">&quot;MIX_ENV&quot;</span><span class="w"> </span><span class="o">=</span><span class="o">&gt;</span><span class="w"> </span><span class="s">&quot;prod&quot;</span><span class="p" data-group-id="8230007952-7">}</span><span class="p" data-group-id="8230007952-6">)</span><span class="w">
+</span><span class="no">false</span></code></pre>
   </section>
 </section>
           </div>

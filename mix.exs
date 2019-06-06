@@ -27,7 +27,8 @@ defmodule ExRunTime.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:eliver, "~> 2.0"},
+      {:dialyxir, "~> 1.0.0-rc.6", only: [:dev], runtime: false},
+      {:eliver, "~> 2.0.0", only: :dev},
       {:junit_formatter, "~> 3.0", only: [:test]},
       {:covertool, "~> 2.0", only: [:test]},
       {:ex_doc, "~> 0.20.2", only: :dev, runtime: false}
