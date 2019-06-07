@@ -7,6 +7,17 @@ pipeline {
       defaultContainer 'jnlp'
       yaml """
 apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ${appName}-cache
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: v1
 kind: Pod
 metadata:
 labels:
@@ -26,17 +37,6 @@ spec:
     - name: cachepd
       persistentVolumeClaim:
         claimName: ${appName}-cache
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: ${appName}-cache
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
 """
     }
   }
