@@ -10,7 +10,7 @@ by adding `ex_run_time` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:ex_run_time, "~> 0.1.0"}
+    {:ex_run_time, ">= 0.0.0"}
   ]
 end
 ```
