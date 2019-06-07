@@ -62,6 +62,13 @@ spec:
         }
       }
     }
+    stage('Verify up-to-date docs') {
+      steps {
+        container('testbox') {
+          sh "mix docs"
+        }
+      }
+    }
     /*
     run docs task, fail if the docs have changed
     if building tag:
