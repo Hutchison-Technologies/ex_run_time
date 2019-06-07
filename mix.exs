@@ -5,15 +5,27 @@ defmodule ExRunTime.MixProject do
     [
       app: :ex_run_time,
       version: String.trim(File.read!("VERSION")),
-      version: "0.1.0",
       elixir: "~> 1.7",
+      build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
+      description: description(),
+      package: package(),
       deps: deps(),
-      aliases: aliases(),
       name: "ExRunTime",
       source_url: "https://github.com/Hutchison-Technologies/ex_run_time",
       homepage_url: "https://github.com/Hutchison-Technologies/ex_run_time",
       test_coverage: [tool: :covertool]
+    ]
+  end
+
+  defp description() do
+    "Tiny elixir library useful for examining the runtime environment."
+  end
+
+  defp package() do
+    [
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/Hutchison-Technologies/ex_run_time"}
     ]
   end
 
@@ -32,18 +44,6 @@ defmodule ExRunTime.MixProject do
       {:junit_formatter, "~> 3.0", only: [:test]},
       {:covertool, "~> 2.0", only: [:test]},
       {:ex_doc, "~> 0.20.2", only: :dev, runtime: false}
-    ]
-  end
-
-  # Aliases are shortcuts or tasks specific to the current project.
-  # For example, to generate docs:
-  #
-  #     $ mix docs
-  #
-  # See the documentation for `Mix` for more info on aliases.
-  defp aliases do
-    [
-      docs: ["docs -o docs"]
     ]
   end
 end
