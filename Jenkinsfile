@@ -5,18 +5,8 @@ pipeline {
     kubernetes {
       label "${appName}-tests"
       defaultContainer 'jnlp'
+      volumes [persistentVolumeClaim(claimName: "${appName}-cache", mountPath: '/cache'), readOnly: false]
       yaml """
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: ${appName}-cache
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 5Gi
----
 apiVersion: v1
 kind: Pod
 metadata:
@@ -30,13 +20,6 @@ spec:
       command:
         - cat
       tty: true
-      volumeMounts:
-        - mountPath: /cache
-          name: cachepd
-  volumes:
-    - name: cachepd
-      persistentVolumeClaim:
-        claimName: ${appName}-cache
 """
     }
   }
