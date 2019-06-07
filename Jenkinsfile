@@ -1,7 +1,9 @@
+def appName = "ex-run-time"
+
 pipeline {
   agent {
     kubernetes {
-      label "ex-run-time-tests"
+      label "${appName}-tests"
       defaultContainer 'jnlp'
       yaml """
 apiVersion: v1
@@ -10,13 +12,13 @@ metadata:
 labels:
   component: ci
 spec:
-  containers:
-  - name: testbox
-    image: elixir:1.7.4-alpine
-    command:
-      - cat
-    tty: true
   restartPolicy: Never
+  containers:
+    - name: testbox
+      image: elixir:1.7.4-alpine
+      command:
+        - cat
+      tty: true
 """
     }
   }
@@ -26,6 +28,7 @@ spec:
         container('testbox') {
           sh "mix local.hex --force"
           sh "mix local.rebar --force"
+          sh "md5sum mix.lock"
           sh "mix deps.get"
           sh "mix dialyzer"
           sh "mix test --cover"
