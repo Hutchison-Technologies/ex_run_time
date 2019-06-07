@@ -16,8 +16,6 @@ defmodule ExRunTime do
       true
       iex> ExRunTime.is_kubernetes?(%{})
       false
-      iex> ExRunTime.is_kubernetes?()
-      false
   """
   @spec is_kubernetes?(%{String.t() => String.t()}) :: boolean()
   def is_kubernetes?(env \\ System.get_env())
