@@ -25,6 +25,8 @@ defmodule ExRunTime.MixProject do
   defp package() do
     [
       licenses: ["MIT"],
+      files: ~w(lib .formatter.exs mix.exs README* readme* LICENSE*
+                license* CHANGELOG* changelog* src VERSION),
       links: %{"GitHub" => "https://github.com/Hutchison-Technologies/ex_run_time"}
     ]
   end
