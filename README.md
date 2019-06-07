@@ -1,4 +1,4 @@
-# ExRunTime
+# ExRunTime ![Hex.pm](https://img.shields.io/hexpm/v/ex_run_time.svg?style=popout-square) ![Hex.pm](https://img.shields.io/hexpm/dt/ex_run_time.svg?style=popout-square)
 
 Tiny elixir library useful for examining the runtime environment.
 
