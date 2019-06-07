@@ -19,6 +19,24 @@ spec:
       command:
         - cat
       tty: true
+      volumeMounts:
+        - mountPath: /cache
+          name: cachepd
+  volumes:
+    - name: cachepd
+      persistentVolumeClaim:
+        claimName: ${appName}-cache
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: ${appName}-cache
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
 """
     }
   }
@@ -28,10 +46,13 @@ spec:
         container('testbox') {
           sh "mix local.hex --force"
           sh "mix local.rebar --force"
-          sh "md5sum mix.lock"
+          sh "[ -d \"/cache/_build\" ] && cp -Rf /cache/_build ."
+          sh "[ -d \"/cache/deps\" ] && cp -Rf /cache/deps ."
           sh "mix deps.get"
           sh "mix dialyzer"
           sh "mix test --cover"
+          sh "cp -Rf _build /cache/_build"
+          sh "cp -Rf deps /cache/deps"
         }
       }
       post {
