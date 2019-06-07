@@ -22,6 +22,12 @@ spec:
       volumeMounts:
         - mountPath: /cache
           name: cachepvc
+      env:
+        - name: HEX_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: hex-key
+              key: key
   volumes:
     - name: cachepvc
       persistentVolumeClaim:
@@ -51,17 +57,16 @@ spec:
         }
       }
     }
-    stage('Verify up-to-date docs') {
+    stage('Publish to Hex') {
+      when {
+        buildingTag()
+      }
       steps {
         container('testbox') {
           sh "mix docs"
+          sh "mix hex.publish --yes"
         }
       }
     }
-    /*
-    run docs task, fail if the docs have changed
-    if building tag:
-    publish to hex
-    */
   }
 }
