@@ -24,12 +24,11 @@ spec:
     stage('Run Unit Tests') {
       steps {
         container('testbox') {
-          sh """
-            mix local.hex --force
-            mix deps.get
-            mix dialyzer
-            mix test --cover
-          """
+          sh "mix local.hex --force"
+          sh "mix local.rebar --force"
+          sh "mix deps.get"
+          sh "mix dialyzer"
+          sh "mix test --cover"
         }
       }
       post {
