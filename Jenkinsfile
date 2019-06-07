@@ -3,7 +3,7 @@ def appName = "ex-run-time"
 pipeline {
   agent {
     kubernetes {
-      label "${appName}-tests"
+      label "${appName}-${env.BRANCH_NAME}-tests"
       defaultContainer 'jnlp'
       yaml """
 apiVersion: v1
@@ -31,7 +31,7 @@ spec:
   volumes:
     - name: cachepvc
       persistentVolumeClaim:
-        claimName: ex-run-time-build-cache
+        claimName: ${appName}-build-cache
 """
     }
   }
