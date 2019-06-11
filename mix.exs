@@ -14,6 +14,9 @@ defmodule ExRunTime.MixProject do
       name: "ExRunTime",
       source_url: "https://github.com/Hutchison-Technologies/ex_run_time",
       homepage_url: "https://github.com/Hutchison-Technologies/ex_run_time",
+      dialyzer: [
+        plt_file: {:no_warn, "dialyzer.plt"}
+      ],
       test_coverage: [tool: :covertool]
     ]
   end
